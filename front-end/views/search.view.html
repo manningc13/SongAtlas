@@ -1,57 +1,23 @@
 <div class="col-xs-12 main">
-    <h1 class="page-header text-center">This is the search page!</h1>
-    <form>
-        <div class="table-responsive tab-content">
-            <table class="table table-striped table-bordered no-margin">
-                <thead>
-                    <th>
-                        Field 1
-                    </th>
-                    <th>
-                        Field 2
-                    </th>
-                    <th>
-                        Field 3
-                    </th>
-                    <th>
-                        Field 4
-                    </th>
-                    <th>
-                        Field 5
-                    </th>
-                    <th>
-                        Field 6
-                    </th>
-                    <th>
-                        Field 7
-                    </th>
-                    <th>
-                        Actions
-                    </th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input ng-model="d" type="text" placeholder="field"></td>
-                        <td><input ng-model="d" type="text" placeholder="field"></td>
-                        <td><input ng-model="d" type="text" placeholder="field"></td>
-                        <td><input ng-model="d" type="text" placeholder="field"></td>
-                        <td><input ng-model="d" type="text" placeholder="field"></td>
-                        <td><input ng-model="d" type="text" placeholder="field"></td>
-                        <td><input ng-model="d" type="text" placeholder="field"></td>
-                        <td class="text-nowrap">
-                            <button ng-click="vm.addForm()" class="glyphicon glyphicon-plus table-icon"></button>
-                            <button ng-click="vm.updateForm()" class="glyphicon glyphicon-ok table-icon"></button>
-                        </td>
-                    </tr>
-                    <tr ng-repeat="item in vm.searchitems">
-                        <td><a href="#/items/{{item._id}}/fields">{{item.title}}</a></td>
-                        <td>
-                            <button ng-click="vm.deleteItem($index)" class="glyphicon glyphicon-remove table-icon"></button>
-                            <button ng-click="vm.selectItem($index)" class="glyphicon glyphicon-pencil table-icon"></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 search-container">
+            <button class="search-button no-border no-outline icon"><i class="fa fa-search"></i></button>
+            <input type="search" id="search" placeholder="Search song title..." />
         </div>
-    </form>
+        <div class="col-xs-12 custom-row round-border">
+            <div class="col-xs-4 col-sm-3">
+                <img src="http://placehold.it/100x100" class="img-responsive full-width">
+            </div>
+            <div class="col-xs-6 col-sm-7 song-info">
+                <p><strong>Artist: </strong> Artist name</p>
+                <p><strong>Track: </strong> Track title</p>
+                <p><strong>Genre: </strong> Track genre</p>
+            </div>
+            <div class="col-xs-12 col-sm-2 center">
+                <a href=""><img src="../img/SoundCloud-logo.png" class="img-circle search-logo"></a>
+                <a href=""><img src="../img/spotify-logo.png" class="img-circle search-logo"></a>
+                <a href=""><img src="../img/lastfm_logo.png" class="img-circle search-logo"></a>
+            </div>
+        </div>
+    </div>
 </div>
