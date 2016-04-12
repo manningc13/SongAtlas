@@ -1,5 +1,21 @@
 .center {
 	text-align: center;
+	margin: auto;
+}
+
+.custom-row {
+	margin: 5px;
+	padding: 10px;
+	border: groove black 1px;
+}
+
+.logo {
+	width: 100px;
+	height: 100px;
+}
+
+.full-width {
+	width: 100%;
 }
 
 .vertical-list {
