@@ -9,7 +9,7 @@
                         Track ID
                     </th>
                     <th>
-                        Name
+                        Track Name
                     </th>
                     <th>
                         Genre
@@ -30,26 +30,19 @@
                                     data-target="#createModal"></button>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-repeat="track in vm.tracks">
                         <td>
                             <a href=""
                                ng-click="vm.editTrack('d')"
                                data-toggle="modal"
-                               data-target="#editModal">ID</a>
+                               data-target="#editModal">{{track.id}}</a>
                         </td>
-                        <td><p>Track Name</p></td>
-                        <td><p>Track Genre</p></td>
+                        <td><p>{{track.track_name}}</p></td>
+                        <td><p>{{track.genre}}</p></td>
                         <td class="text-nowrap">
                             <button ng-click="vm.deleteTrack('d')" class="btn-danger fa fa-trash-o table-icon"></button>
                         </td>
                     </tr>
-                    <!--<tr ng-repeat="item in vm.searchitems">-->
-                        <!--<td><a href="#/items/{{item._id}}/fields">{{item.title}}</a></td>-->
-                        <!--<td>-->
-                            <!--<button ng-click="vm.deleteItem($index)" class="glyphicon glyphicon-remove table-icon"></button>-->
-                            <!--<button ng-click="vm.selectItem($index)" class="glyphicon glyphicon-pencil table-icon"></button>-->
-                        <!--</td>-->
-                    <!--</tr>-->
                     </tbody>
                 </table>
             </div>

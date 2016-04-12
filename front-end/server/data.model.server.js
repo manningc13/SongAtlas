@@ -5,7 +5,7 @@ module.exports = function(db) {
     return api;
 
     function getTracks(callback) {
-        db.query('SELECT * FROM characters', function(err, rows) {
+        db.query('SELECT * FROM tracks', function(err, rows) {
             if (err) {
                 console.log("Error: " + err.stack);
             }

@@ -12,24 +12,32 @@
         vm.editTrack = editTrack;
         vm.addTrack = addTrack;
 
+        vm.tracks = [];
+
+        function init() {
+            getTracks();
+        }
+
+        init();
+
         function getTracks() {
             DataService.getTracks(function (response) {
-                console.log(response);
+                vm.tracks = response;
             });
         }
 
         function deleteTrack(trackId) {
             //DataService.deleteTrack(trackId, function (response) {
-                console.log(trackId);
+            //    console.log(trackId);
             //});
         }
 
         function editTrack(track) {
-            console.log(track);
+            //console.log(track);
         }
 
         function addTrack(track) {
-            console.log(track);
+            //console.log(track);
         }
     }
 })();
