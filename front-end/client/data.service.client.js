@@ -6,7 +6,8 @@
 
     function DataService($http) {
         var api = {
-            getTracks: getTracks
+            getTracks: getTracks,
+            updateTrackById: updateTrackById
         };
 
         return api;
@@ -20,6 +21,10 @@
             }, function errorCallback(response) {
                 console.log("Error");
             });
+        }
+
+        function updateTrackById(id, newTrack) {
+            return $http.put("/api/tracks/" + id, newTrack);
         }
     }
 })();

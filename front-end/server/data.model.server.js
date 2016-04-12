@@ -1,6 +1,8 @@
+'use strict'
 module.exports = function(db) {
     var api = {
         getTracks: getTracks,
+        updateTrackById: updateTrackById
     };
     return api;
 
@@ -13,5 +15,10 @@ module.exports = function(db) {
                 callback(rows);
             }
         })
+    }
+
+    function updateTrackById(id, newTrack) {
+        db.query()
+        return newTrack;
     }
 }
