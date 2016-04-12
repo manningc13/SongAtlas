@@ -1,57 +1,50 @@
 <div class="col-xs-12 main">
-    <h1 class="page-header text-center">This is the admin page!</h1>
-    <form>
-        <div class="table-responsive tab-content">
-            <table class="table table-striped table-bordered no-margin">
-                <thead>
-                <th>
-                    Field 1
-                </th>
-                <th>
-                    Field 2
-                </th>
-                <th>
-                    Field 3
-                </th>
-                <th>
-                    Field 4
-                </th>
-                <th>
-                    Field 5
-                </th>
-                <th>
-                    Field 6
-                </th>
-                <th>
-                    Field 7
-                </th>
-                <th>
-                    Actions
-                </th>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><input ng-model="d" type="text" placeholder="field"></td>
-                    <td><input ng-model="d" type="text" placeholder="field"></td>
-                    <td><input ng-model="d" type="text" placeholder="field"></td>
-                    <td><input ng-model="d" type="text" placeholder="field"></td>
-                    <td><input ng-model="d" type="text" placeholder="field"></td>
-                    <td><input ng-model="d" type="text" placeholder="field"></td>
-                    <td><input ng-model="d" type="text" placeholder="field"></td>
-                    <td class="text-nowrap">
-                        <button ng-click="vm.addForm()" class="glyphicon glyphicon-plus table-icon"></button>
-                        <button ng-click="vm.updateForm()" class="glyphicon glyphicon-ok table-icon"></button>
-                    </td>
-                </tr>
-                <tr ng-repeat="item in vm.searchitems">
-                    <td><a href="#/items/{{item._id}}/fields">{{item.title}}</a></td>
-                    <td>
-                        <button ng-click="vm.deleteItem($index)" class="glyphicon glyphicon-remove table-icon"></button>
-                        <button ng-click="vm.selectItem($index)" class="glyphicon glyphicon-pencil table-icon"></button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </form>
+    <div class="custom-row round-border">
+        <h1 class="page-header text-center">Track Admin</h1>
+        <form>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <th>
+                        Track ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Genre
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><p>---</p></td>
+                        <td><p>---</p></td>
+                        <td><p>---</p></td>
+                        <td class="text-nowrap">
+                            <button ng-click="vm.addForm()" class="btn-success fa fa-plus table-icon"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p>ID</p></td>
+                        <td><p>Track Name</p></td>
+                        <td><p>Track Genre</p></td>
+                        <td class="text-nowrap">
+                            <button ng-click="vm.addForm()" class="btn-danger fa fa-trash-o table-icon"></button>
+                        </td>
+                    </tr>
+                    <!--<tr ng-repeat="item in vm.searchitems">-->
+                        <!--<td><a href="#/items/{{item._id}}/fields">{{item.title}}</a></td>-->
+                        <!--<td>-->
+                            <!--<button ng-click="vm.deleteItem($index)" class="glyphicon glyphicon-remove table-icon"></button>-->
+                            <!--<button ng-click="vm.selectItem($index)" class="glyphicon glyphicon-pencil table-icon"></button>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
 </div>
