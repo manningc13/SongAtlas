@@ -18,7 +18,7 @@ module.exports = function(db) {
     }
 
     function updateTrackById(id, newTrack) {
-        db.query()
+        //db.query()
         return newTrack;
     }
 }
