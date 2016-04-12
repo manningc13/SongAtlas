@@ -1,0 +1,49 @@
+.center {
+	text-align: center;
+	margin: auto;
+}
+
+.custom-row {
+	margin: 5px;
+	padding: 10px;
+	border: groove black 1px;
+}
+
+.logo {
+	width: 100px;
+	height: 100px;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.vertical-list {
+	list-style: none;
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.form-icon {
+	font-size: 2rem;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+.sort-icon {
+	margin-left: .5rem;
+	margin-right: .5rem;	
+}
+
+.table-icon {
+	font-size: 2rem;
+}
+
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
