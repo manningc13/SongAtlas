@@ -1,19 +1,6 @@
 -- Stored Procedures for Database Design Project
 use songatlas;
 
-DROP PROCEDURE IF EXISTS add_track;
-DElIMITER $$
-
-CREATE PROCEDURE add_track(IN input_track_name VARCHAR(30), IN input_album_name VARCHAR(45), IN artist_name VARCHAR(30),
-							IN input_track_genre VARCHAR(15), IN input_track_link VARCHAR(15) ) 
-	BEGIN
-		INSERT INTO user_input (input_track_name, input_album_name, input_artist_name, input_genre, input_track_link)
-					VALUES(track_name, album_name, artist_name, genre, track_link);
-	END $$
-DELIMITER ;
-
-
-
 -- Update Track by ID
 -- ---------------------
 -- Updates all fields of a track with a matching given track ID
