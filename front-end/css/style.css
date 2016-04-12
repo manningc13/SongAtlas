@@ -1,12 +1,23 @@
+body {
+    background: 
+    	/*Hack to add color to background image using semi-transparent overlay*/
+	    linear-gradient(
+	      rgba(26, 56, 100, .4),
+	      rgba(26, 56, 100, .4)
+	    ),
+	    /*Select background image*/
+	    url("../img/background/symphony.png");
+}
+
 .center {
 	text-align: center;
 	margin: auto;
 }
 
 .custom-row {
-	margin: 5px;
+	margin-top: 5px;
 	padding: 10px;
-	border: groove black 1px;
+	background-color: #dddddd;
 }
 
 .logo {
@@ -30,6 +41,11 @@
 
 .no-margin {
 	margin: 0;
+}
+
+.round-border {
+	border: groove black 1px;
+	border-radius: 20px;
 }
 
 .sort-icon {
