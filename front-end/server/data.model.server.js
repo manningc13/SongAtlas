@@ -1,3 +1,9 @@
+var tracks = require("./mock/tracks.json");
+var artists = require("./mock/artists.json");
+var last_fm = require("./mock/last_fm.json");
+var soundcloud = require("./mock/soundcloud.json");
+var spotify = require("./mock/spotify.json");
+var albums = require("./mock/albums.json");
 'use strict';
 module.exports = function(db) {
     var api = {
@@ -7,7 +13,8 @@ module.exports = function(db) {
     return api;
 
     function getTracks(callback) {
-        
+        // MOCK CODE //
+        callback(tracks);
 
         // NON-MOCK CODE //
         //db.query('SELECT * FROM tracks', function(err, rows) {
@@ -21,7 +28,13 @@ module.exports = function(db) {
     }
 
     function updateTrackById(id, newTrack) {
-
+        // MOCK CODE //
+        for (var i = 0; i < tracks.length; i++) {
+            if (tracks[i].id == id) {
+                tracks[i] = newTrack;
+                return;
+            }
+        }
 
         // NON-MOCK CODE //
         //var id = newTrack.id;

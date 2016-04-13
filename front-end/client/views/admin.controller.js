@@ -56,11 +56,10 @@
             var newTrack = vm.trackEdit;
             var trackId = newTrack.id;
             updateTrackById(trackId, newTrack);
-            // call updateTrackById() with id and new object;
         }
 
         function cancelEdit() {
-            vm.trackEdit = null;
+            vm.trackEdit = {};
         }
 
         function updateTrackById(id, newTrack) {
