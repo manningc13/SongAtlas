@@ -7,7 +7,8 @@
     function DataService($http) {
         var api = {
             getTracks: getTracks,
-            updateTrackById: updateTrackById
+            updateTrackById: updateTrackById,
+            deleteTrack: deleteTrack
         };
 
         return api;
@@ -25,6 +26,10 @@
 
         function updateTrackById(id, newTrack) {
             return $http.put("/api/tracks/" + id, newTrack);
+        }
+
+        function deleteTrack(id) {
+            return $http.delete("/api/tracks/" + id);
         }
     }
 })();

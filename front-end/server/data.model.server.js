@@ -8,7 +8,8 @@ var albums = require("./mock/albums.json");
 module.exports = function(db) {
     var api = {
         getTracks: getTracks,
-        updateTrackById: updateTrackById
+        updateTrackById: updateTrackById,
+        deleteTrack: deleteTrack
     };
     return api;
 
@@ -66,5 +67,16 @@ module.exports = function(db) {
         //            return res;
         //        }
         //    });
+    }
+
+    function deleteTrack(trackId) {
+        // MOCK CODE //
+        for (var i = 0; i < tracks.length; i++) {
+            if (tracks[i].id == trackId) {
+                tracks.splice(i, 1);
+                break;
+            }
+        }
+        return tracks;
     }
 };

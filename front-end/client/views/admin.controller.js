@@ -30,10 +30,12 @@
             });
         }
 
-        function deleteTrack(trackId) {
-            //DataService.deleteTrack(trackId, function (response) {
-            //    console.log(trackId);
-            //});
+        function deleteTrack(index) {
+            var trackId = vm.tracks[index].id;
+            DataService.deleteTrack(trackId)
+                .then(function(response) {
+                    vm.tracks = response.data;
+                });
         }
 
         function editTrack(track) {

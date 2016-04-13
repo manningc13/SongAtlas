@@ -40,7 +40,7 @@
                         <td><p>{{track.track_name}}</p></td>
                         <td><p>{{track.genre}}</p></td>
                         <td class="text-nowrap">
-                            <button ng-click="vm.deleteTrack('d')" class="btn-danger fa fa-trash-o table-icon"></button>
+                            <button ng-click="vm.deleteTrack($index)" class="btn-danger fa fa-trash-o table-icon"></button>
                         </td>
                     </tr>
                     </tbody>
