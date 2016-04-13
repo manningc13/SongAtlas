@@ -4,25 +4,34 @@
             <button ng-click="vm.search()" class="search-button no-border no-outline icon"><i class="fa fa-search"></i></button>
             <input ng-model="vm.searchTerm" type="search" id="search" placeholder="Search song title..." />
         </div>
-        <div class="col-xs-12 custom-row round-border" ng-repeat="result in vm.searchResults">
-            <div class="col-xs-6 col-sm-3">
+        <div class="col-xs-12 custom-row round-border search-result" ng-repeat="result in vm.searchResults">
+            <div class="col-xs-4 vcenter result-panel">
                 <img ng-src="{{result.details.albumImage}}" class="img-responsive full-width">
             </div>
-            <div class="col-xs-6 col-sm-6 song-info">
-                <p>{{result.details.artistName}}</p>
-                <p>{{result.track.track_name}}</p>
-                <p>{{result.track.genre}}</p>
+            <div class="col-xs-6 song-info vcenter result-panel">
+                <label for="artist">Artist</label>
+                <p id="artist">{{result.details.artistName}}</p>
+
+                <label for="name">Track</label>
+                <p id="name">{{result.track.track_name}}</p>
+
+                <label for="genre">Genre</label>
+                <p id="genre">{{result.track.genre}}</p>
             </div>
-            <div class="col-xs-12 col-sm-3 center" ng-repeat="url in result.details.urls">
-                <div ng-switch="url.source" class="col-xs-8">
-                    <div ng-switch-when="soundcloud">
-                        <a href="{{url.url}}" target="_blank"><img src="../img/SoundCloud-logo.png" class="img-circle search-logo"></a>
-                    </div>
-                    <div ng-switch-when="spotify">
-                        <a href="{{url.url}}" target="_blank"><img src="../img/spotify-logo.png" class="img-circle search-logo"></a>
-                    </div>
-                    <div ng-switch-when="lastfm">
-                        <a href="{{url.url}}" target="_blank"><img src="../img/lastfm_logo.png" class="img-circle search-logo"></a>
+            <div class="col-xs-2 vcenter result-panel">
+                <div ng-repeat="url in result.details.urls">
+                    <div ng-switch="url.source">
+                        <div ng-switch-when="soundcloud">
+                            <a href="{{url.url}}" target="_blank"><img src="../img/SoundCloud-logo.png" class="img-circle search-logo"></a>
+                        </div>
+                        <br>
+                        <div ng-switch-when="spotify">
+                            <a href="{{url.url}}" target="_blank"><img src="../img/spotify-logo.png" class="img-circle search-logo"></a>
+                        </div>
+                        <br>
+                        <div ng-switch-when="lastfm">
+                            <a href="{{url.url}}" target="_blank"><img src="../img/lastfm_logo.png" class="img-circle search-logo"></a>
+                        </div>
                     </div>
                 </div>
             </div>

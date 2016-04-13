@@ -29,12 +29,6 @@ body {
 	width: 100%;
 }
 
-.vertical-list {
-	list-style: none;
-	padding: 0;
-	margin-bottom: 0;
-}
-
 .form-icon {
 	font-size: 2rem;
 }
@@ -90,7 +84,17 @@ body {
 }
 
 .search-logo {
-	width:10vw;
+	width: 6vw;
+}
+
+.search-result {
+	display: table;
+}
+
+.search-result .result-panel {
+	float: none;
+	display: table-cell;
+	vertical-align: center;
 }
 
 .sort-icon {
@@ -98,8 +102,12 @@ body {
 	margin-right: .5rem;	
 }
 
-.song-info {
+.song-info label{
 	font-size: 2.5vw;
+}
+
+.song-info p{
+	font-size: 2vw;
 }
 
 .table-icon {
@@ -111,4 +119,16 @@ body {
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     padding: 10px;
+}
+
+.vcenter {
+	display: inline-block;
+	vertical-align: middle;
+	/*float: none;*/
+}
+
+.vertical-list {
+	list-style: none;
+	padding: 0;
+	margin-bottom: 0;
 }
