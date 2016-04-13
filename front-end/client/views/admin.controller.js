@@ -53,6 +53,7 @@
 
         function addTrack() {
             var newTrack = vm.trackCreate;
+            vm.trackCreate = {};
             DataService.addTrack(newTrack)
                 .then(function(response) {
                     vm.tracks = response.data;

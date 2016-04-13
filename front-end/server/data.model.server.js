@@ -10,7 +10,8 @@ module.exports = function(db) {
         getTracks: getTracks,
         updateTrackById: updateTrackById,
         deleteTrack: deleteTrack,
-        addTrack: addTrack
+        addTrack: addTrack,
+        getTracksWithDetails: getTracksWithDetails
     };
     return api;
 
@@ -84,7 +85,7 @@ module.exports = function(db) {
     function addTrack(newTrack) {
         var tempId = -9999;
         for (var i = 0; i < tracks.length; i++) {
-            if (tracks[i].id > tempId) {
+            if (tracks[i].id >= tempId) {
                 tempId = tracks[i].id + 1;
             }
         }
@@ -98,5 +99,81 @@ module.exports = function(db) {
         tracks.push(newTrack);
 
         return tracks;
+    }
+
+    function getTracksWithDetails(trackName) {
+        var resultsTracks = [];
+        var finalResults = [];
+        for (var i = 0; i < tracks.length; i++) {
+            if (tracks[i].track_name.toLowerCase() == trackName.toLowerCase()) {
+                resultsTracks.push(tracks[i]);
+            }
+        }
+
+        for (var i = 0; i < resultsTracks.length; i++) {
+            var details = {};
+            details.artistName = getArtistName(resultsTracks[i].artist_id);
+            details.urls = [];
+            details.urls.push(
+                {url: getSoundcloudURL(resultsTracks[i].cloud_id),
+                source: 'soundcloud'});
+            details.urls.push(
+                {url: getSpotifyURL(resultsTracks[i].spotify_id),
+                source: 'spotify'});
+            details.urls.push(
+                {url: getLastFmURL(resultsTracks[i].last_fm_id),
+                source: 'lastfm'});
+            details.albumImage = getAlbumImage(resultsTracks[i].album_id);
+            finalResults.push({});
+            finalResults[i].track = resultsTracks[i];
+            finalResults[i].details = details;
+        }
+
+        return finalResults;
+    }
+
+    function getArtistName(artistId) {
+        for (var i = 0; i < artists.length; i++) {
+            if (artists[i].id == artistId) {
+                return artists[i].artist_name;
+            }
+        }
+        return 'NULL';
+    }
+
+    function getSoundcloudURL(soundcloudId) {
+        for (var i = 0; i < soundcloud.length; i++) {
+            if (soundcloud[i].id == soundcloudId) {
+                return soundcloud[i].href;
+            }
+        }
+        return 'NULL';
+    }
+
+    function getSpotifyURL(spotifyId) {
+        for (var i = 0; i < spotify.length; i++) {
+            if (spotify[i].id == spotifyId) {
+                return spotify[i].href;
+            }
+        }
+        return 'NULL';
+    }
+
+    function getLastFmURL(lastFmId) {
+        for (var i = 0; i < last_fm.length; i++) {
+            if (last_fm[i].id == lastFmId) {
+                return last_fm[i].href;
+            }
+        }
+        return 'NULL';
+    }
+
+    function getAlbumImage(albumId) {
+        for (var i = 0; i < albums.length; i++) {
+            if (albums[i].id == albumId) {
+                return albums[i].picture;
+            }
+        }
+        return 'NULL';
     }
 };

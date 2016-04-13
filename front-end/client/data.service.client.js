@@ -9,7 +9,8 @@
             getTracks: getTracks,
             updateTrackById: updateTrackById,
             deleteTrack: deleteTrack,
-            addTrack: addTrack
+            addTrack: addTrack,
+            getTracksWithDetails: getTracksWithDetails,
         };
 
         return api;
@@ -35,6 +36,10 @@
 
         function addTrack(newTrack) {
             return $http.post("/api/tracks/", newTrack);
+        }
+
+        function getTracksWithDetails(trackName) {
+            return $http.get("/api/tracks/" + trackName);
         }
     }
 })();

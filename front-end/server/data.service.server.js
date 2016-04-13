@@ -4,6 +4,7 @@ module.exports = function(app, dataModel) {
     app.put("/api/tracks/:trackId", updateTrackById);
     app.delete("/api/tracks/:trackId", deleteTrack);
     app.post("/api/tracks/", addTrack);
+    app.get("/api/tracks/:trackName", getTracksWithDetails);
 
     function getTracks(req, res) {
         dataModel.getTracks(function(rows) {
@@ -27,6 +28,12 @@ module.exports = function(app, dataModel) {
     function addTrack(req, res) {
         var newTrack = req.body;
         var tracks = dataModel.addTrack(newTrack);
+        res.json(tracks);
+    }
+
+    function getTracksWithDetails(req, res) {
+        var trackName = req.params.trackName;
+        var tracks = dataModel.getTracksWithDetails(trackName);
         res.json(tracks);
     }
 }
