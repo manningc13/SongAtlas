@@ -8,7 +8,8 @@
         var api = {
             getTracks: getTracks,
             updateTrackById: updateTrackById,
-            deleteTrack: deleteTrack
+            deleteTrack: deleteTrack,
+            addTrack: addTrack
         };
 
         return api;
@@ -30,6 +31,10 @@
 
         function deleteTrack(id) {
             return $http.delete("/api/tracks/" + id);
+        }
+
+        function addTrack(newTrack) {
+            return $http.post("/api/tracks/", newTrack);
         }
     }
 })();

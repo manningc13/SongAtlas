@@ -25,7 +25,6 @@
                         <td><p>---</p></td>
                         <td class="text-nowrap">
                             <button class="btn-success fa fa-plus table-icon"
-                                    ng-click="vm.addTrack('d')"
                                     data-toggle="modal"
                                     data-target="#createModal"></button>
                         </td>
@@ -82,20 +81,17 @@
                     <h3 class="modal-title">Create Track</h3>
                 </div>
                 <div class="modal-body">
-                    <label for="newTrackId">Track ID</label>
-                    <input type="text" name="{{track.id}}" class="form-control" id="newTrackId" ng-model="vm.trackCreate.id" readonly>
-
                     <label for="newName">Name</label>
-                    <input type="text" name="{{track.name}}" class="form-control" id="newName" ng-model="vm.trackCreate.name">
+                    <input type="text" name="name" class="form-control" id="newName" ng-model="vm.trackCreate.track_name">
 
                     <label for="newGenre">Genre</label>
-                    <input type="text" name="{{track.genre}}" class="form-control" id="newGenre" ng-model="vm.trackCreate.genre">
+                    <input type="text" name="genre" class="form-control" id="newGenre" ng-model="vm.trackCreate.genre">
 
-                    <label for="newURL">URL</label>
-                    <input type="url" name="{{track.url}}" class="form-control" id="newURL" ng-model="vm.trackCreate.url">
+                    <label for="newURL">Custom URL</label>
+                    <input type="text" name="url" class="form-control" id="newURL" ng-model="vm.trackCreate.custom_url">
                 </div>
                 <div class="modal-footer">
-                    <button ng-click="vm.saveCreate()" class="btn btn-success" data-dismiss="modal">Save</button>
+                    <button ng-click="vm.addTrack()" class="btn btn-success" data-dismiss="modal">Save</button>
                     <button class="btn btn-warning" data-dismiss="modal" ng-click="vm.cancelCreate()">Cancel</button>
                 </div>
             </div>

@@ -17,6 +17,7 @@
 
         vm.tracks = [];
         vm.trackEdit = {};
+        vm.trackCreate = {};
 
         function init() {
             getTracks();
@@ -50,8 +51,12 @@
             vm.trackEdit.custom_url = track.custom_url;
         }
 
-        function addTrack(track) {
-            //console.log(track);
+        function addTrack() {
+            var newTrack = vm.trackCreate;
+            DataService.addTrack(newTrack)
+                .then(function(response) {
+                    vm.tracks = response.data;
+                });
         }
 
         function saveEdit() {

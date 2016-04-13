@@ -9,7 +9,8 @@ module.exports = function(db) {
     var api = {
         getTracks: getTracks,
         updateTrackById: updateTrackById,
-        deleteTrack: deleteTrack
+        deleteTrack: deleteTrack,
+        addTrack: addTrack
     };
     return api;
 
@@ -77,6 +78,25 @@ module.exports = function(db) {
                 break;
             }
         }
+        return tracks;
+    }
+
+    function addTrack(newTrack) {
+        var tempId = -9999;
+        for (var i = 0; i < tracks.length; i++) {
+            if (tracks[i].id > tempId) {
+                tempId = tracks[i].id + 1;
+            }
+        }
+
+        newTrack.id = tempId;
+        newTrack.duration = "??:??:??";
+        newTrack.album_id = null;
+        newTrack.spotify_id = null;
+        newTrack.cloud_id = null;
+        newTrack.last_fm_id = null;
+        tracks.push(newTrack);
+
         return tracks;
     }
 };
