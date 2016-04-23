@@ -16,30 +16,26 @@ module.exports = function(db) {
     return api;
 
     function getTracks(callback) {
-        // MOCK CODE //
-        callback(tracks);
-
-        // NON-MOCK CODE //
-        //db.query('SELECT * FROM tracks', function(err, rows) {
-        //    if (err) {
-        //        console.log("Error: " + err.stack);
-        //    }
-        //    else {
-        //        callback(rows);
-        //    }
-        //})
+        db.query('SELECT * FROM tracks', function(err, rows) {
+            if (err) {
+                console.log("Error: " + err.stack);
+            }
+            else {
+                callback(rows);
+            }
+        })
     }
 
     function updateTrackById(id, newTrack) {
         // MOCK CODE //
-        for (var i = 0; i < tracks.length; i++) {
-            if (tracks[i].id == id) {
-                tracks[i] = newTrack;
-                return;
-            }
-        }
+        //for (var i = 0; i < tracks.length; i++) {
+        //    if (tracks[i].id == id) {
+        //        tracks[i] = newTrack;
+        //        return;
+        //    }
+        //}
 
-        // NON-MOCK CODE //
+         //NON-MOCK CODE
         //var id = newTrack.id;
         //var name = newTrack.track_name;
         //var duration = newTrack.duration;
@@ -49,54 +45,59 @@ module.exports = function(db) {
         //var cloud_id = newTrack.cloud_id;
         //var last_fm_id = newTrack.last_fm_id;
         //var custom_url = newTrack.custom_url;
-        //
-        //db.query('CALL update_track_by_ID('
-        //    + id + ','
-        //    + name + ','
-        //    + duration + ','
-        //    + album_id + ','
-        //    + genre + ','
-        //    + spotify_id + ','
-        //    + cloud_id + ','
-        //    + last_fm_id + ','
-        //    + custom_url + ')',
-        //    function(err, res) {
+
+        //connection.query('UPDATE users SET Name = :Name WHERE UserID = :UserID',
+        //    {UserID: userId, Name: name})
+
+        //db.query(
+        //    "UPDATE tracks t" +
+        //    "SET t.track_name = :name, t.duration = :duration, t.album_id = :album_id," +
+        //    " t.genre = :genre, t.spotify_id = :spotify_id," +
+        //    " t.cloud_id = :cloud_id, t.last_fm_id = :last_fm_id, t.custom_url = :custom_url" +
+        //    " WHERE t.id = :id",
+        //    [{
+        //        name: name,
+        //        duration: duration,
+        //        album_id: album_id,
+        //        genre: genre,
+        //        spotify_id: spotify_id,
+        //        cloud_id: cloud_id,
+        //        last_fm_id: last_fm_id,
+        //        custom_url: custom_url,
+        //        id: id}
+        //    ],
+        //    function(err, rows) {
         //        if (err) {
         //            console.log("Error: " + err.stack);
         //        }
         //        else {
-        //            console.log(res);
-        //            return res;
+        //            return rows;
         //        }
-        //    });
+        //})
     }
 
     function deleteTrack(trackId) {
-        // MOCK CODE //
-        for (var i = 0; i < tracks.length; i++) {
-            if (tracks[i].id == trackId) {
-                tracks.splice(i, 1);
-                break;
+        db.query('DELETE FROM tracks WHERE id = ?', [trackId], function(err, rows) {
+            if (err) {
+                console.log("Error: " + err.stack);
             }
-        }
-        return tracks;
+            else {
+               return rows;
+            }
+        });
     }
 
     function addTrack(newTrack) {
-        var tempId = -9999;
-        for (var i = 0; i < tracks.length; i++) {
-            if (tracks[i].id >= tempId) {
-                tempId = tracks[i].id + 1;
-            }
-        }
+        var insertRecord = 'INSERT INTO tracks(track_name,duration,album_id,genre,spotify_id,cloud_id,last_fm_id,custom_url) VALUE(?,?,?,?,?,?,?,?)';
 
-        newTrack.id = tempId;
-        newTrack.duration = "??:??:??";
-        newTrack.album_id = null;
-        newTrack.spotify_id = null;
-        newTrack.cloud_id = null;
-        newTrack.last_fm_id = null;
-        tracks.push(newTrack);
+        db.query(insertRecord, [newTrack.track_name, null, null, newTrack.genre, null, null, null, newTrack.custom_url], function(err, rows) {
+            if (err) {
+                console.log("Error: " + err.stack);
+            }
+            else {
+                return;
+            }
+        });
 
         return tracks;
     }
@@ -139,6 +140,17 @@ module.exports = function(db) {
             }
         }
         return 'NULL';
+
+        //NON-MOCK CODE//
+        //db.query('SELECT artist_name FROM artists WHERE id = ?', [artistId], function(err, results) {
+        //    if (err) {
+        //        console.log("Error: " + err.stack);
+        //    }
+        //    else {
+        //        console.log(results[0].artist_name);
+        //        return results[0].artist_name;
+        //    }
+        //})
     }
 
     function getSoundcloudURL(soundcloudId) {

@@ -35,7 +35,7 @@
             var trackId = vm.tracks[index].id;
             DataService.deleteTrack(trackId)
                 .then(function(response) {
-                    vm.tracks = response.data;
+                    init();
                 });
         }
 
@@ -56,7 +56,7 @@
             vm.trackCreate = {};
             DataService.addTrack(newTrack)
                 .then(function(response) {
-                    vm.tracks = response.data;
+                    init();
                 });
         }
 
