@@ -17,6 +17,7 @@
 
         vm.tracks = [];
         vm.trackEdit = {};
+        vm.trackCreate = {};
 
         function init() {
             getTracks();
@@ -30,10 +31,12 @@
             });
         }
 
-        function deleteTrack(trackId) {
-            //DataService.deleteTrack(trackId, function (response) {
-            //    console.log(trackId);
-            //});
+        function deleteTrack(index) {
+            var trackId = vm.tracks[index].id;
+            DataService.deleteTrack(trackId)
+                .then(function(response) {
+                    init();
+                });
         }
 
         function editTrack(track) {
@@ -46,21 +49,26 @@
             vm.trackEdit.cloud_id = track.cloud_id;
             vm.trackEdit.last_fm_id = track.last_fm_id;
             vm.trackEdit.custom_url = track.custom_url;
+            vm.trackEdit.artist_id = track.artist_id;
         }
 
-        function addTrack(track) {
-            //console.log(track);
+        function addTrack() {
+            var newTrack = vm.trackCreate;
+            vm.trackCreate = {};
+            DataService.addTrack(newTrack)
+                .then(function(response) {
+                    init();
+                });
         }
 
         function saveEdit() {
             var newTrack = vm.trackEdit;
             var trackId = newTrack.id;
             updateTrackById(trackId, newTrack);
-            // call updateTrackById() with id and new object;
         }
 
         function cancelEdit() {
-            vm.trackEdit = null;
+            vm.trackEdit = {};
         }
 
         function updateTrackById(id, newTrack) {
