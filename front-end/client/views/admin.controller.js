@@ -49,6 +49,7 @@
             vm.trackEdit.cloud_id = track.cloud_id;
             vm.trackEdit.last_fm_id = track.last_fm_id;
             vm.trackEdit.custom_url = track.custom_url;
+            vm.trackEdit.artist_id = track.artist_id;
         }
 
         function addTrack() {

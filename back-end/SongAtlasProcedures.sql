@@ -119,7 +119,7 @@ DELIMITER $$
 
 CREATE PROCEDURE get_track_details(IN i_track_title VARCHAR(50) )
 	BEGIN
-		SELECT ar.artist_name, CONCAT(sp.href," , ", sc.href, " , ", fm.href) AS urls, al.picture
+		SELECT t.*, ar.artist_name, CONCAT(sp.href," , ", sc.href, " , ", fm.href) AS urls, al.picture
         FROM tracks t JOIN artists ar ON t.artist_id = ar.id
 					  JOIN albums al ON t.album_id = al.id
                       JOIN spotify sp ON t.spotify_id = sp.id

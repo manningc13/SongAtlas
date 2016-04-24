@@ -1,9 +1,3 @@
-var tracks = require("./mock/tracks.json");
-var artists = require("./mock/artists.json");
-var last_fm = require("./mock/last_fm.json");
-var soundcloud = require("./mock/soundcloud.json");
-var spotify = require("./mock/spotify.json");
-var albums = require("./mock/albums.json");
 'use strict';
 module.exports = function(db) {
     var api = {
@@ -71,82 +65,51 @@ module.exports = function(db) {
         });
     }
 
-    function getTracksWithDetails(trackName) {
-        var resultsTracks = [];
-        var finalResults = [];
-        for (var i = 0; i < tracks.length; i++) {
-            if (tracks[i].track_name.toLowerCase() == trackName.toLowerCase()) {
-                resultsTracks.push(tracks[i]);
-            }
-        }
+    function getTracksWithDetails(trackName, callback) {
+        var resultList = [];
 
-        for (var i = 0; i < resultsTracks.length; i++) {
-            var details = {};
-            details.artistName = getArtistName(resultsTracks[i].artist_id);
-            details.urls = [];
-            details.urls.push(
-                {url: getSoundcloudURL(resultsTracks[i].cloud_id),
-                source: 'soundcloud'});
-            details.urls.push(
-                {url: getSpotifyURL(resultsTracks[i].spotify_id),
-                source: 'spotify'});
-            details.urls.push(
-                {url: getLastFmURL(resultsTracks[i].last_fm_id),
-                source: 'lastfm'});
-            details.albumImage = getAlbumImage(resultsTracks[i].album_id);
-            finalResults.push({});
-            finalResults[i].track = resultsTracks[i];
-            finalResults[i].details = details;
-        }
-
-        return finalResults;
-    }
-
-    function getArtistName(artistId) {
-        db.query('SELECT artist_name FROM artists WHERE id = ?', [artistId], function(err, results) {
+        db.query("CALL get_track_details(?)", [trackName], function(err, results, fields) {
             if (err) {
-                console.log("Error: " + err.stack);
+                console.log(err);
             }
             else {
-                console.log(results[0].artist_name);
-                return results[0].artist_name;
-            }
-        })
-    }
+                var resultTrack = results[0][0];
+                var track = {};
+                track.id = resultTrack.id;
+                track.track_name = resultTrack.track_name;
+                track.duration = resultTrack.duration;
+                track.album_id = resultTrack.album_id;
+                track.genre = resultTrack.genre;
+                track.spotify_id = resultTrack.spotify_id;
+                track.cloud_id = resultTrack.cloud_id;
+                track.last_fm_id = resultTrack.last_fm_id;
+                track.custom_url = resultTrack.custom_url;
+                track.artist_id = resultTrack.artist_id;
 
-    function getSoundcloudURL(soundcloudId) {
-        for (var i = 0; i < soundcloud.length; i++) {
-            if (soundcloud[i].id == soundcloudId) {
-                return soundcloud[i].href;
-            }
-        }
-        return 'NULL';
-    }
+                var details = {}
+                details.artistName = resultTrack.artist_name;
+                details.albumImage = resultTrack.picture;
+                details.urls = [];
+                details.urls.push({
+                    url: resultTrack.urls.replace(/\s+/g, '').split(',')[0],
+                    source: 'spotify'
+                });
+                details.urls.push({
+                    url: resultTrack.urls.replace(/\s+/g, '').split(',')[1],
+                    source: 'soundcloud'
+                });
+                details.urls.push({
+                    url: resultTrack.urls.replace(/\s+/g, '').split(',')[2],
+                    source: 'lastfm'
+                });
 
-    function getSpotifyURL(spotifyId) {
-        for (var i = 0; i < spotify.length; i++) {
-            if (spotify[i].id == spotifyId) {
-                return spotify[i].href;
-            }
-        }
-        return 'NULL';
-    }
+                resultList.push({
+                    track: track,
+                    details: details
+                });
 
-    function getLastFmURL(lastFmId) {
-        for (var i = 0; i < last_fm.length; i++) {
-            if (last_fm[i].id == lastFmId) {
-                return last_fm[i].href;
+                callback(resultList);
             }
-        }
-        return 'NULL';
-    }
-
-    function getAlbumImage(albumId) {
-        for (var i = 0; i < albums.length; i++) {
-            if (albums[i].id == albumId) {
-                return albums[i].picture;
-            }
-        }
-        return 'NULL';
+        });
     }
 };

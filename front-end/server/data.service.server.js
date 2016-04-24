@@ -33,7 +33,9 @@ module.exports = function(app, dataModel) {
 
     function getTracksWithDetails(req, res) {
         var trackName = req.params.trackName;
-        var tracks = dataModel.getTracksWithDetails(trackName);
-        res.json(tracks);
+        dataModel.getTracksWithDetails(trackName, function(response) {
+            res.json(response);
+        });
+
     }
 }
