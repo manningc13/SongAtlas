@@ -17,6 +17,8 @@ CREATE PROCEDURE update_track_by_ID(IN i_track_id INT(11), IN i_name VARCHAR(50)
 	END $$  
 DELIMITER ;
 
+CALL update_track_by_ID(6, "SONG", "12:34:56", NULL, "Rock", NULL, NULL, NULL, NULL);
+
 
 -- Delete Track by ID
 -- -------------------
@@ -106,3 +108,28 @@ DELIMITER ;
 -- TEST CASES
 CALL get_track_by_id(5);
 CALL get_track_by_id(57);
+
+
+
+-- Get Tracks with Details
+-- ----------------------
+-- Query that will be for the main function of the search bar. Takes in a single string
+-- for a song title and returns the needed details on the search page
+
+DROP PROCEDURE IF EXISTS get_track_details;
+DELIMITER $$
+
+CREATE PROCEDURE get_track_details(IN i_track_title VARCHAR(50) )
+	BEGIN
+		SELECT ar.artist_name, CONCAT(sp.href," , ", sc.href, " , ", fm.href) AS urls, al.picture
+        FROM tracks t JOIN artists ar ON t.artist_id = ar.id
+					  JOIN albums al ON t.album_id = al.id
+                      JOIN spotify sp ON t.spotify_id = sp.id
+					  JOIN soundcloud sc ON t.cloud_id = sc.id
+					  JOIN last_fm fm ON t.last_fm_id = fm.id
+		WHERE t.track_name = i_track_title;
+	END $$
+DELIMITER ;
+
+CALL get_track_details("Smooth Criminal");
+CALL get_track_details("bulls on paradE");
