@@ -1,7 +1,0 @@
-[{"id":1, "artist_id":6, "name":"Horehound", "genre":"Rock", "picture":"https://i.scdn.co/image/d7ec545206ca696ec70e32854fd2b05f9c649df3"},
- {"id":2, "artist_id":5, "name":"Somewhere In The Between", "genre":"Ska", "picture":"https://i.scdn.co/image/16b8b7975108ac2c2bab2fe4abf4f8cae828779e"},
- {"id":3, "artist_id":1, "name":"2Cellos", "genre":"Classic Rock", "picture":"https://i.scdn.co/image/6829e02ff6b7f94a57c1cf3355c2d03bfffb2bc5"},
- {"id":4, "artist_id":2, "name":"Camp", "genre":"Hip-hop", "picture":"https://i.scdn.co/image/b5618dc7cdeb0754da0436d95d32d256581c3fb4"},
- {"id":5, "artist_id":3, "name":"F10RIDA", "genre":"Electronic", "picture":"https://i.scdn.co/image/a8e9bb5d617df2d027fa83e18761050dd5ad950a"},
- {"id":6, "artist_id":4, "name":"Evil Empire", "genre":"Punk", "picture":"https://i.scdn.co/image/d4c0e88f3d25f279d2d5621910bc831699207183"},
- {"id":7, "artist_id":7, "name":"Unknown Album", "genre":"Unkown", "picture":""}]
