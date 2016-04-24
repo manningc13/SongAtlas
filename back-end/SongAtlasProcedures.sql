@@ -17,8 +17,6 @@ CREATE PROCEDURE update_track_by_ID(IN i_track_id INT(11), IN i_name VARCHAR(50)
 	END $$  
 DELIMITER ;
 
-CALL update_track_by_ID(6, "SONG", "12:34:56", NULL, "Rock", NULL, NULL, NULL, NULL);
-
 
 -- Delete Track by ID
 -- -------------------
